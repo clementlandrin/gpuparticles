@@ -17,7 +17,8 @@
 					"scaleX": 0.05,
 					"scaleY": 0.05,
 					"scaleZ": 0.05,
-					"rotationX": -90,
+					"rotationX": 90,
+					"rotationY": 90,
 					"children": [
 						{
 							"type": "polygon",
@@ -48,12 +49,19 @@
 				{
 					"type": "sphereSpawn",
 					"name": "sphereSpawn",
+					"props": {},
+					"minRadius": 0.5
+				},
+				{
+					"type": "orbitSpeedSimulation",
+					"name": "orbitSpeedSimulation",
 					"props": {}
 				},
 				{
-					"type": "swarmSimulation",
-					"name": "swarmSimulation",
-					"props": {}
+					"type": "gravitySimulation",
+					"name": "gravitySimulation",
+					"props": {},
+					"gravityZ": 2
 				}
 			]
 		}

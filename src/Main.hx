@@ -52,7 +52,8 @@ class Main extends hxd.App {
 		inst = new Main();
 
 		var shaderDumpDir = "shaders/";
-		for ( f in sys.FileSystem.readDirectory(shaderDumpDir) ) 
-			sys.FileSystem.deleteFile(shaderDumpDir + f);
+		if ( sys.FileSystem.exists(shaderDumpDir) )
+			for ( f in sys.FileSystem.readDirectory(shaderDumpDir) ) 
+				sys.FileSystem.deleteFile(shaderDumpDir + f);
 	}
 }
