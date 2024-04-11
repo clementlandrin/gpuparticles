@@ -1,0 +1,136 @@
+{
+	"type": "prefab",
+	"children": [
+		{
+			"type": "renderProps",
+			"name": "renderProps",
+			"props": {
+				"PBR": {
+					"mode": "Pbr",
+					"emissive": 1,
+					"exposure": 0,
+					"sky": "Specular",
+					"tone": "Linear",
+					"occlusion": 1,
+					"a": 2.51,
+					"b": 0.03,
+					"c": 2.43,
+					"d": 0.59,
+					"e": 0.14,
+					"forceDirectDiscard": false
+				}
+			},
+			"children": [
+				{
+					"type": "environment",
+					"name": "environment",
+					"sourceMapPath": "assets/envmap/sky_Color16.png"
+				}
+			]
+		},
+		{
+			"type": "object",
+			"name": "object",
+			"scaleX": 4.92,
+			"scaleY": 4.92,
+			"scaleZ": 4.92,
+			"children": [
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"x": 0.5,
+					"rotationX": 90,
+					"rotationZ": -90,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"x": -0.5,
+					"rotationX": 89.99999999999999,
+					"rotationZ": 90,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"y": -0.5,
+					"rotationX": 89.99999999999999,
+					"rotationZ": 180,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"y": 0.5,
+					"rotationX": 89.99999999999999,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"z": 0.5,
+					"rotationX": -180,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"z": -0.5,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "material",
+					"name": "material",
+					"props": {
+						"PBR": {
+							"mode": "PBR",
+							"blend": "None",
+							"shadows": false,
+							"culling": "Back",
+							"depthTest": "Less",
+							"colorMask": 15,
+							"enableStencil": false
+						}
+					}
+				}
+			]
+		},
+		{
+			"type": "light",
+			"name": "light_0",
+			"x": 0.5,
+			"y": 0.5,
+			"z": -0.71,
+			"rotationY": 45,
+			"rotationZ": 45,
+			"kind": "Directional",
+			"range": 10,
+			"zNear": 0.02
+		},
+		{
+			"type": "reference",
+			"name": "proto",
+			"source": "prefabs/fx/proto.fx",
+			"editMode": true
+		}
+	]
+}

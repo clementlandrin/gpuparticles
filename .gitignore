@@ -1,0 +1,4 @@
+shaders
+*.c
+dump
+.tmp

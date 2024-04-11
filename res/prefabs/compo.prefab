@@ -1,0 +1,56 @@
+{
+	"type": "prefab",
+	"children": [
+		{
+			"type": "object",
+			"name": "object",
+			"scaleX": 0.27,
+			"scaleY": 0.27,
+			"scaleZ": 0.27,
+			"children": [
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"rotationX": 89.99999999999999,
+					"rotationZ": 89.99999999999999,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"rotationX": 89.99999999999999,
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "polygon",
+					"name": "polygon",
+					"kind": 0,
+					"args": [
+						0
+					]
+				},
+				{
+					"type": "material",
+					"name": "material",
+					"props": {
+						"PBR": {
+							"mode": "PBR",
+							"blend": "None",
+							"shadows": true,
+							"culling": "None",
+							"depthTest": "Less",
+							"colorMask": 15,
+							"enableStencil": false
+						}
+					}
+				}
+			]
+		}
+	]
+}
