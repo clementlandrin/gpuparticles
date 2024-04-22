@@ -1,13 +1,18 @@
-class Main extends hxd.App {
-	static public  var inst : Main;
-	public var benchmark : h3d.impl.Benchmark;
+import hrt.prefab.fx.gpuemitter.GPUEmitter;
 
+enum Movement {
+	None;
+	Circle;
+	Random;
+}
+
+class Main extends hxd.App {
+	static public var inst : Main;
 	static var prevCam : h3d.Camera;
-	function reload() {
-		prevCam = s3d.camera.clone();
-		inst.dispose();
-		inst = new Main();
-	}
+	static var movement : Movement = None;
+
+	public var benchmark : h3d.impl.Benchmark;
+	public var time : Float = 0.0;
 
 	override function init() {
 		s3d.renderer = new Renderer();
@@ -27,8 +32,15 @@ class Main extends hxd.App {
 		}
 	}
 
+	function reload() {
+		prevCam = s3d.camera.clone();
+		inst.dispose();
+		inst = new Main();
+	}
+
 	override function update( dt : Float ) {
 		super.update(dt);
+		time += dt;
 		if ( hxd.Key.isPressed(hxd.Key.F5) )
 			reload();
 		benchmark.setPosition(0, s2d.height - benchmark.height);
@@ -41,6 +53,38 @@ class Main extends hxd.App {
 				benchmark.visible = false;
 			else
 				benchmark.measureCpu = true;
+		}
+		if ( hxd.Key.isPressed(hxd.Key.F1) ) {
+			movement = switch (movement) {
+			case None:
+				Circle;
+			case Circle:
+				Random;
+			case Random:
+				None;
+			}
+		}
+		inline function debugMoveObj(o : h3d.scene.Object) {
+			switch(movement) {
+			case None:
+				o.setPosition(0.0, 0.0, 0.0);
+				o.setRotation(0.0, 0.0, 0.0);
+			case Circle:
+				var angle = time * 2.0;
+				o.setPosition(Math.cos(angle), Math.sin(angle), 0.0);
+				o.setRotation(0.0, 0.0, angle);
+			case Random:
+				o.setPosition(Math.cos(time * 2.0), Math.sin(time * 2.0), 0.0);
+				o.setRotation(Math.sin(time * 3.0), 1.215 * time, 2.0 * time);
+			}
+		}
+		var gpuEmitters = s3d.findAll(o -> Std.downcast(o, GPUEmitter.GPUEmitterObject));
+		for ( gpuEmitter in gpuEmitters ) {
+			var meshSpawnShader = gpuEmitter.spawnPass.getShader(hrt.prefab.fx.gpuemitter.MeshSpawn.MeshSpawnShader);
+			if ( meshSpawnShader == null )
+				debugMoveObj(gpuEmitter);
+			else
+				debugMoveObj(meshSpawnShader.mesh);	
 		}
 	}
 

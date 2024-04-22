@@ -5,11 +5,21 @@
 	"cullingRadius": 3,
 	"children": [
 		{
+			"type": "model",
+			"name": "Hero_N",
+			"source": "assets/models/Model.FBX",
+			"enabled": false,
+			"z": -1
+		},
+		{
 			"type": "gpuemitter",
 			"name": "gpuemitter",
-			"maxCount": 25000,
+			"maxCount": 4849,
+			"maxLifeTime": 2,
+			"minStartSpeed": 0,
 			"gravity": 0.1,
 			"radius": 1.6,
+			"align": "Speed",
 			"children": [
 				{
 					"type": "object",
@@ -23,6 +33,9 @@
 						{
 							"type": "polygon",
 							"name": "polygon",
+							"scaleY": 1.89,
+							"rotationX": 90,
+							"rotationY": 90,
 							"kind": 0,
 							"args": [
 								0
@@ -50,18 +63,42 @@
 					"type": "sphereSpawn",
 					"name": "sphereSpawn",
 					"props": {},
-					"minRadius": 0.5
-				},
-				{
-					"type": "orbitSpeedSimulation",
-					"name": "orbitSpeedSimulation",
-					"props": {}
+					"maxRadius": 0.5
 				},
 				{
 					"type": "gravitySimulation",
 					"name": "gravitySimulation",
+					"enabled": false,
+					"props": {}
+				},
+				{
+					"type": "meshSpawn",
+					"name": "meshSpawn",
 					"props": {},
-					"gravityZ": 2
+					"children": [
+						{
+							"type": "model",
+							"name": "Model",
+							"source": "assets/models/Model.FBX"
+						}
+					]
+				},
+				{
+					"type": "orbitSpeedSimulation",
+					"name": "orbitSpeedSimulation",
+					"props": {},
+					"axisX": 1
+				},
+				{
+					"type": "turbulenceSimulation",
+					"name": "turbulenceSimulation",
+					"props": {},
+					"intensity": 2,
+					"octaves": 4,
+					"noiseScale": 5,
+					"scrollSpeedX": 0,
+					"scrollSpeedZ": 1,
+					"persistence": 1
 				}
 			]
 		}
