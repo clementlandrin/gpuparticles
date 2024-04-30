@@ -38,60 +38,10 @@
 				{
 					"type": "polygon",
 					"name": "polygon",
-					"x": 0.5,
-					"rotationX": 90,
-					"rotationZ": -90,
-					"kind": 0,
-					"args": [
-						0
-					]
-				},
-				{
-					"type": "polygon",
-					"name": "polygon",
-					"x": -0.5,
-					"rotationX": 89.99999999999999,
-					"rotationZ": 90,
-					"kind": 0,
-					"args": [
-						0
-					]
-				},
-				{
-					"type": "polygon",
-					"name": "polygon",
-					"y": -0.5,
-					"rotationX": 89.99999999999999,
-					"rotationZ": 180,
-					"kind": 0,
-					"args": [
-						0
-					]
-				},
-				{
-					"type": "polygon",
-					"name": "polygon",
-					"y": 0.5,
-					"rotationX": 89.99999999999999,
-					"kind": 0,
-					"args": [
-						0
-					]
-				},
-				{
-					"type": "polygon",
-					"name": "polygon",
-					"z": 0.5,
-					"rotationX": -180,
-					"kind": 0,
-					"args": [
-						0
-					]
-				},
-				{
-					"type": "polygon",
-					"name": "polygon",
-					"z": -0.5,
+					"z": -3,
+					"scaleX": 500,
+					"scaleY": 500,
+					"scaleZ": 500,
 					"kind": 0,
 					"args": [
 						0
@@ -105,6 +55,39 @@
 							"mode": "PBR",
 							"blend": "None",
 							"shadows": false,
+							"culling": "Back",
+							"depthTest": "Less",
+							"colorMask": 15,
+							"enableStencil": false
+						}
+					}
+				}
+			]
+		},
+		{
+			"type": "polygon",
+			"name": "attachTo",
+			"enabled": false,
+			"x": -1.77,
+			"y": 1.67,
+			"scaleX": 0.68,
+			"scaleY": 0.27,
+			"scaleZ": 0.27,
+			"rotationY": 89.99999999999999,
+			"kind": 4,
+			"args": [
+				24,
+				24
+			],
+			"children": [
+				{
+					"type": "material",
+					"name": "material",
+					"props": {
+						"PBR": {
+							"mode": "PBR",
+							"blend": "None",
+							"shadows": true,
 							"culling": "Back",
 							"depthTest": "Less",
 							"colorMask": 15,

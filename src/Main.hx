@@ -1,3 +1,5 @@
+import h3d.impl.GlDriver;
+import hrt.prefab.fx.gpuemitter.MeshSpawn;
 import hrt.prefab.fx.gpuemitter.GPUEmitter;
 
 enum Movement {
@@ -13,6 +15,7 @@ class Main extends hxd.App {
 
 	public var benchmark : h3d.impl.Benchmark;
 	public var time : Float = 0.0;
+	public var attachTo : h3d.scene.Object;
 
 	override function init() {
 		s3d.renderer = new Renderer();
@@ -30,6 +33,19 @@ class Main extends hxd.App {
 			s3d.camera.load(prevCam);
 			camController.loadFromCamera(false);
 		}
+
+		attachTo = s3d.find(o -> o.name == "attachTo" ? o : null);
+
+		for ( s in s3d.findAll(o -> Std.downcast(o, h3d.scene.Skin)) )
+			s.visible = false;
+
+		// var meshBatch = new h3d.scene.MeshBatch(h3d.prim.Sphere.defaultUnitSphere(), null, s3d);
+		// meshBatch.begin();
+		// meshBatch.worldPosition = new h3d.Matrix();
+		// for ( i in 0...10 ) {
+		// 	meshBatch.worldPosition.initTranslation(i / 10.0, 0.0, 0.0);
+		// 	meshBatch.emitInstance();
+		// }
 	}
 
 	function reload() {
@@ -64,6 +80,15 @@ class Main extends hxd.App {
 				None;
 			}
 		}
+		if ( hxd.Key.isPressed(hxd.Key.F2) ) {
+			var gpuEmitter = s3d.findAll(o -> Std.downcast(o, GPUEmitterObject));
+			for ( g in gpuEmitter ) {
+				var sh = g.spawnPass.getShader(MeshSpawn.MeshSpawnShader);
+				if ( sh != null )
+					sh.attachTo(attachTo.find(o -> Std.downcast(o, h3d.scene.Mesh)));
+			}
+		}
+		var radius = 2.0;
 		inline function debugMoveObj(o : h3d.scene.Object) {
 			switch(movement) {
 			case None:
@@ -71,11 +96,11 @@ class Main extends hxd.App {
 				o.setRotation(0.0, 0.0, 0.0);
 			case Circle:
 				var angle = time * 2.0;
-				o.setPosition(Math.cos(angle), Math.sin(angle), 0.0);
+				o.setPosition(radius * Math.cos(angle), radius * Math.sin(angle), 0.0);
 				o.setRotation(0.0, 0.0, angle);
 			case Random:
-				o.setPosition(Math.cos(time * 2.0), Math.sin(time * 2.0), 0.0);
-				o.setRotation(Math.sin(time * 3.0), 1.215 * time, 2.0 * time);
+				o.setPosition(radius * Math.cos(time * 2.0), radius * Math.sin(time * 2.0), 0.0);
+				o.setRotation(radius * Math.sin(time * 3.0), 1.215 * time, 2.0 * time);
 			}
 		}
 		var gpuEmitters = s3d.findAll(o -> Std.downcast(o, GPUEmitter.GPUEmitterObject));
@@ -86,9 +111,15 @@ class Main extends hxd.App {
 			else
 				debugMoveObj(meshSpawnShader.mesh);	
 		}
+
+		if ( attachTo != null )
+			attachTo.z = Math.sin(time);
 	}
 
 	static function main() {
+		#if hlsdl
+		GlDriver.enableComputeShaders();
+		#end
 		h3d.mat.MaterialSetup.current = new h3d.mat.PbrMaterialSetup();
 		hxd.res.Resource.LIVE_UPDATE = true;
 		hxd.Res.initLocal();
