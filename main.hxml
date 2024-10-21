@@ -9,6 +9,7 @@
 --macro include("hrt.shgraph")
 --macro include("shaders")
 --macro include("prefab")
+--macro include("h3d.shader")
 # --macro include("hrt.prefab")
 # --macro include("hxd.prefab")
 -D hl-ver=1.15.0

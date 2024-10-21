@@ -29,6 +29,8 @@ class Main extends hxd.App {
 		sceneRes.watch(reload);
 
 		var camController = new h3d.scene.CameraController(10, s3d);
+		camController.enableZoom = false;
+		camController.panSpeed = 3.0;
 		if ( prevCam != null ) {
 			s3d.camera.load(prevCam);
 			camController.loadFromCamera(false);

@@ -31,36 +31,56 @@
 		{
 			"type": "object",
 			"name": "object",
+			"z": -3,
 			"scaleX": 4.92,
 			"scaleY": 4.92,
 			"scaleZ": 4.92,
 			"children": [
 				{
+					"type": "advancedDecal",
+					"name": "advancedDecal",
+					"scaleX": 1.0163,
+					"scaleY": 1.0163,
+					"scaleZ": 1.0163,
+					"albedoMap": "assets/common_textures/ring_1.png",
+					"renderMode": "BeforeTonemapping"
+				},
+				{
+					"type": "advancedDecal",
+					"name": "advancedDecal",
+					"scaleX": 5,
+					"scaleY": 5,
+					"scaleZ": 5,
+					"albedoMap": "assets/common_textures/ring_1.png",
+					"renderMode": "BeforeTonemapping"
+				},
+				{
 					"type": "polygon",
 					"name": "polygon",
-					"z": -3,
 					"scaleX": 500,
 					"scaleY": 500,
 					"scaleZ": 500,
 					"kind": 0,
 					"args": [
 						0
-					]
-				},
-				{
-					"type": "material",
-					"name": "material",
-					"props": {
-						"PBR": {
-							"mode": "PBR",
-							"blend": "None",
-							"shadows": false,
-							"culling": "Back",
-							"depthTest": "Less",
-							"colorMask": 15,
-							"enableStencil": false
+					],
+					"children": [
+						{
+							"type": "material",
+							"name": "material",
+							"props": {
+								"PBR": {
+									"mode": "PBR",
+									"blend": "None",
+									"shadows": false,
+									"culling": "Back",
+									"depthTest": "Less",
+									"colorMask": 15,
+									"enableStencil": false
+								}
+							}
 						}
-					}
+					]
 				}
 			]
 		},
@@ -108,6 +128,40 @@
 			"kind": "Directional",
 			"range": 10,
 			"zNear": 0.02
+		},
+		{
+			"type": "box",
+			"name": "box",
+			"enabled": false,
+			"scaleX": 5,
+			"scaleY": 5,
+			"scaleZ": 5,
+			"children": [
+				{
+					"type": "material",
+					"name": "material",
+					"props": {
+						"PBR": {
+							"mode": "BeforeTonemapping",
+							"blend": "Alpha",
+							"shadows": false,
+							"culling": "Back",
+							"depthTest": "Less",
+							"colorMask": 15,
+							"enableStencil": false,
+							"depthWrite": "Off"
+						}
+					}
+				},
+				{
+					"type": "shader",
+					"name": "AlphaMult",
+					"source": "h3d.shader.AlphaMult",
+					"props": {
+						"alpha": 0.18
+					}
+				}
+			]
 		},
 		{
 			"type": "reference",
